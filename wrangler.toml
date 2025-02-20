@@ -1,6 +1,0 @@
-name = "deno-gemini-chatbot"  # Name of your worker
-main = "worker.js"            # Entry-point file
-compatibility_date = "2023-10-01"  # Compatibility date for Workers runtime
-
-[vars]
-GEMINI_API_KEY="WAIzaSyDXhIbIfG8P9yNmvSfegV52mO9_aC3-VW0"
