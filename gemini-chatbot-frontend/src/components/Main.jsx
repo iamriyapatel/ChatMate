@@ -22,19 +22,19 @@ const Main = () => {
 
         {/* Cards Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="card bg-white shadow-md rounded-lg p-4 flex flex-col items-center space-y-2">
+          <div className="card bg-white shadow-card rounded-lg p-4 flex flex-col items-center space-y-2">
             <p className="text-center text-gray-700">Suggest beautiful places to see on an upcoming road trip</p>
             <img src={assets.compass_icon} alt="Compass Icon" className="w-10 h-10" />
           </div>
-          <div className="card bg-white shadow-md rounded-lg p-4 flex flex-col items-center space-y-2">
+          <div className="card bg-white shadow-card rounded-lg p-4 flex flex-col items-center space-y-2">
             <p className="text-center text-gray-700">Briefly summarize this concept: urban planning</p>
             <img src={assets.bulb_icon} alt="Bulb Icon" className="w-10 h-10" />
           </div>
-          <div className="card bg-white shadow-md rounded-lg p-4 flex flex-col items-center space-y-2">
+          <div className="card bg-white shadow-card rounded-lg p-4 flex flex-col items-center space-y-2">
             <p className="text-center text-gray-700">Brainstorm team bonding activities for our work retreat</p>
             <img src={assets.message_icon} alt="Message Icon" className="w-10 h-10" />
           </div>
-          <div className="card bg-white shadow-md rounded-lg p-4 flex flex-col items-center space-y-2">
+          <div className="card bg-white shadow-card rounded-lg p-4 flex flex-col items-center space-y-2">
             <p className="text-center text-gray-700">Improve the readability of the following code</p>
             <img src={assets.code_icon} alt="Code Icon" className="w-10 h-10" />
           </div>
@@ -42,7 +42,7 @@ const Main = () => {
 
         {/* Search Box and Bottom Info */}
         <div className="main-bottom space-y-4">
-          <div className="search-box bg-white shadow-md rounded-lg p-4 flex items-center justify-between">
+          <div className="search-box bg-white shadow-card rounded-lg p-4 flex items-center justify-between">
             <input
               type="text"
               placeholder="Enter a prompt here"
