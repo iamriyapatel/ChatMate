@@ -5,7 +5,6 @@ const Chatbot: React.FC = () => {
   const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
   const [input, setInput] = useState<string>('');
 
-
   const sendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
@@ -14,7 +13,7 @@ const Chatbot: React.FC = () => {
     setInput('');
 
     try {
-      const apiKey = import.meta.env.VITE_API_KEY; // Corrected here
+      const apiKey = import.meta.env.VITE_API_KEY;
       if (!apiKey) {
         throw new Error('API key is undefined');
       }
@@ -22,9 +21,11 @@ const Chatbot: React.FC = () => {
       const response = await axios.post(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
         {
-          contents: [{
-            parts: [{ text: input }]
-          }]
+          contents: [
+            {
+              parts: [{ text: input }],
+            },
+          ],
         },
         {
           headers: {
@@ -48,24 +49,44 @@ const Chatbot: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
-      <h1 className='text-center'>AI Chatbot</h1>
-      <div style={{ marginBottom: '20px', maxHeight: '400px', overflowY: 'auto', border: '1px solid #ccc', padding: '10px' }}>
+    <div className="flex flex-col min-h-screen bg-background p-6">
+      {/* Header */}
+      <h1 className="text-center text-2xl font-bold text-primary mb-6">AI Chatbot</h1>
+
+      {/* Chat Messages */}
+      <div
+        className="flex-1 space-y-4 overflow-y-auto border border-gray-300 rounded-lg p-4 bg-white shadow-md"
+        style={{ maxHeight: '400px' }}
+      >
         {messages.map((msg, index) => (
-          <div key={index} style={{ textAlign: msg.sender === 'user' ? 'right' : 'left', marginBottom: '10px' }}>
+          <div
+            key={index}
+            className={`max-w-xs p-3 rounded-lg ${
+              msg.sender === 'user'
+                ? 'self-end bg-primary text-white'
+                : 'self-start bg-gray-100 text-gray-800'
+            }`}
+          >
             <strong>{msg.sender === 'user' ? 'You:' : 'Gemina:'}</strong> {msg.text}
           </div>
         ))}
       </div>
-      <form onSubmit={sendMessage}>
+
+      {/* Input Field */}
+      <form onSubmit={sendMessage} className="mt-4 flex space-x-2">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type a message..."
-          style={{ width: '80%', padding: '10px', marginRight: '5px' }}
+          className="flex-1 p-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary"
         />
-        <button type="submit" style={{ padding: '10px 20px' }}>Send</button>
+        <button
+          type="submit"
+          className="bg-primary text-white p-3 rounded-lg hover:bg-accent transition duration-300"
+        >
+          Send
+        </button>
       </form>
     </div>
   );
