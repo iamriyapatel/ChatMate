@@ -17,7 +17,7 @@ function App() {
 
       {/* Footer */}
       <footer className="bg-white shadow-lg p-4 text-center text-gray-600">
-        <p>© 2023 Gemini AI. All rights reserved.</p>
+        {/*<p>© 2023 Gemini AI. All rights reserved.</p>*/}
       </footer>
     </div>
   );
