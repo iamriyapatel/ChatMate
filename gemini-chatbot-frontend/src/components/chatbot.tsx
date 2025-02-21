@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 const Chatbot: React.FC = () => {
@@ -33,17 +33,17 @@ const Chatbot: React.FC = () => {
           },
         }
       );
-
+      
       const reply = response.data.candidates[0].content.parts[0].text;
       setMessages((prevMessages) => [
         ...prevMessages,
-        { sender: 'gemina', text: reply },
+        { sender: 'gemini', text: reply },
       ]);
     } catch (error) {
       console.error('Error sending message:', error);
       setMessages((prevMessages) => [
         ...prevMessages,
-        { sender: 'gemina', text: 'Oops! Something went wrong.' },
+        { sender: 'gemini', text: 'Oops! Something went wrong.' },
       ]);
     }
   };
@@ -61,13 +61,13 @@ const Chatbot: React.FC = () => {
         {messages.map((msg, index) => (
           <div
             key={index}
-            className={`max-w-xs p-3 rounded-lg ${
+            className={`max-w-xs p-3 rounded-lg shadow-card animate-fade-in ${
               msg.sender === 'user'
                 ? 'self-end bg-primary text-white'
                 : 'self-start bg-gray-100 text-gray-800'
             }`}
           >
-            <strong>{msg.sender === 'user' ? 'You:' : 'Gemina:'}</strong> {msg.text}
+            <strong>{msg.sender === 'user' ? 'You:' : 'Gemini:'}</strong> {msg.text}
           </div>
         ))}
       </div>
