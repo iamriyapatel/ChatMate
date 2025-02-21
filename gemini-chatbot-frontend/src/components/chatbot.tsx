@@ -50,9 +50,7 @@ const Chatbot: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-background p-6">
-      {/* Header */}
-      <h1 className="text-center text-2xl font-bold text-primary mb-6">AI Chatbot</h1>
-
+      
       {/* Chat Messages */}
       <div
         className="flex-1 space-y-4 overflow-y-auto border border-gray-300 rounded-lg p-4 bg-white shadow-md"
