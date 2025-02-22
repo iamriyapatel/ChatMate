@@ -1,6 +1,8 @@
 // src/App.jsx
 import React from 'react';
 import Chatbot from './components/chatbot';
+import Sidebar from './components/Sidebar';
+import Main from './components/Main';
 
 function App() {
   return (
@@ -17,7 +19,7 @@ function App() {
 
       {/* Footer */}
       <footer className="bg-white shadow-lg p-4 text-center text-gray-600">
-        {/*<p>© 2023 Gemini AI. All rights reserved.</p>*/}
+        <p>© 2025 Gemini AI. All rights reserved.</p>
       </footer>
     </div>
   );
