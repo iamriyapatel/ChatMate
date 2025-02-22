@@ -17,27 +17,22 @@ const Main = () => {
           <p className="text-lg font-semibold">
             <span className="text-primary dark:text-dark-text">Hello, Riya.</span>
           </p>
-          <p className="text-gray-700 dark:text-dark-text">How can I help you today?</p>
+          <p className="text-gray-700 dark:text-dark-text">How can I assist you today?</p>
         </div>
 
         {/* Cards Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="card bg-card dark:bg-dark-card shadow-card rounded-lg p-4 flex flex-col items-center space-y-2">
-            <p className="text-center text-gray-700 dark:text-dark-text">Suggest beautiful places to see on an upcoming road trip</p>
-            <img src={assets.compass_icon} alt="Compass Icon" className="w-10 h-10" />
-          </div>
-          <div className="card bg-card dark:bg-dark-card shadow-card rounded-lg p-4 flex flex-col items-center space-y-2">
-            <p className="text-center text-gray-700 dark:text-dark-text">Briefly summarize this concept: urban planning</p>
-            <img src={assets.bulb_icon} alt="Bulb Icon" className="w-10 h-10" />
-          </div>
-          <div className="card bg-card dark:bg-dark-card shadow-card rounded-lg p-4 flex flex-col items-center space-y-2">
-            <p className="text-center text-gray-700 dark:text-dark-text">Brainstorm team bonding activities for our work retreat</p>
-            <img src={assets.message_icon} alt="Message Icon" className="w-10 h-10" />
-          </div>
-          <div className="card bg-card dark:bg-dark-card shadow-card rounded-lg p-4 flex flex-col items-center space-y-2">
-            <p className="text-center text-gray-700 dark:text-dark-text">Improve the readability of the following code</p>
-            <img src={assets.code_icon} alt="Code Icon" className="w-10 h-10" />
-          </div>
+          {[
+            { text: "Suggest beautiful places to visit on a road trip", icon: assets.compass_icon },
+            { text: "Summarize the concept of urban planning", icon: assets.bulb_icon },
+            { text: "Brainstorm team bonding activities for a work retreat", icon: assets.message_icon },
+            { text: "Improve the readability of the following code", icon: assets.code_icon }
+          ].map((item, index) => (
+            <div key={index} className="card bg-card dark:bg-dark-card shadow-card rounded-lg p-4 flex flex-col items-center space-y-2 transition-transform transform hover:scale-105 hover:shadow-lg">
+              <p className="text-center text-gray-700 dark:text-dark-text">{item.text}</p>
+              <img src={item.icon} alt="Icon" className="w-10 h-10" />
+            </div>
+          ))}
         </div>
 
         {/* Search Box and Bottom Info */}
@@ -45,7 +40,7 @@ const Main = () => {
           <div className="search-box bg-card dark:bg-dark-card shadow-card rounded-lg p-4 flex items-center justify-between">
             <input
               type="text"
-              placeholder="Enter a prompt here"
+              placeholder="Enter a prompt here..."
               className="flex-1 p-2 border-none focus:outline-none text-text dark:text-dark-text"
             />
             <div className="flex space-x-2">
@@ -55,7 +50,7 @@ const Main = () => {
             </div>
           </div>
           <p className="bottom-info text-xs text-gray-500 dark:text-dark-text text-center">
-            Gemini may display inaccurate info, including about people, so double-check its responses. Your privacy and Gemini Apps.
+            Gemini AI may display inaccurate info, so verify its responses. Your privacy and Gemini Apps.
           </p>
         </div>
       </div>

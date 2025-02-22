@@ -18,7 +18,10 @@ function App() {
         <Sidebar />
 
         {/* Main Content */}
-        <Main />
+        <div className="flex-1 p-4">
+          <Main />
+          <Chatbot />
+        </div>
       </div>
 
       {/* Footer */}

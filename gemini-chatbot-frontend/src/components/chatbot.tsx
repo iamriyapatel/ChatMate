@@ -9,7 +9,6 @@ const Chatbot: React.FC = () => {
     e.preventDefault();
     if (!input.trim()) return;
 
-    // Add user message to the chat
     setMessages((prevMessages) => [...prevMessages, { sender: 'user', text: input }]);
     setInput('');
 
@@ -19,59 +18,32 @@ const Chatbot: React.FC = () => {
         throw new Error('API key is undefined');
       }
 
-      // Send request to Gemini API
       const response = await axios.post(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
         {
-          contents: [
-            {
-              parts: [{ text: input }],
-            },
-          ],
+          contents: [{ parts: [{ text: input }] }],
         },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
+        { headers: { 'Content-Type': 'application/json' } }
       );
 
-      // Extract bot reply
-      const reply = response.data.candidates[0].content.parts[0].text;
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { sender: 'gemini', text: reply },
-      ]);
+      const reply = response.data.candidates?.[0]?.content?.parts?.[0]?.text || 'No response received';
+      setMessages((prevMessages) => [...prevMessages, { sender: 'gemini', text: reply }]);
     } catch (error) {
       console.error('Error sending message:', error);
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { sender: 'gemini', text: 'Oops! Something went wrong.' },
-      ]);
+      setMessages((prevMessages) => [...prevMessages, { sender: 'gemini', text: 'Oops! Something went wrong.' }]);
     }
   };
 
   return (
     <div className="flex flex-col min-h-screen bg-background dark:bg-dark-background p-6">
-      {/* Chat Messages */}
-      <div
-        className="flex-1 space-y-4 overflow-y-auto border border-gray-300 rounded-lg p-4 bg-card dark:bg-dark-card shadow-md max-h-[400px]"
-      >
+      <div className="flex-1 space-y-4 overflow-y-auto border border-gray-300 rounded-lg p-4 bg-card dark:bg-dark-card shadow-md max-h-[400px]">
         {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={`max-w-xs p-3 rounded-lg shadow-card animate-fade-in ${
-              msg.sender === 'user'
-                ? 'self-end bg-primary text-white'
-                : 'self-start bg-gray-100 dark:bg-dark-card text-gray-800 dark:text-dark-text'
-            }`}
-          >
+          <div key={index} className={`p-3 rounded-lg shadow-card max-w-xs ${msg.sender === 'user' ? 'user-message' : 'bot-message'}`}>
             <strong>{msg.sender === 'user' ? 'You:' : 'Gemini:'}</strong> {msg.text}
           </div>
         ))}
       </div>
 
-      {/* Input Field */}
       <form onSubmit={sendMessage} className="mt-4 flex space-x-2">
         <input
           type="text"
@@ -80,10 +52,7 @@ const Chatbot: React.FC = () => {
           placeholder="Type a message..."
           className="flex-1 p-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary dark:bg-dark-card dark:text-dark-text"
         />
-        <button
-          type="submit"
-          className="bg-primary text-white p-3 rounded-lg hover:bg-accent transition duration-300"
-        >
+        <button type="submit" className="bg-primary text-white p-3 rounded-lg hover:bg-accent transition duration-300">
           Send
         </button>
       </form>

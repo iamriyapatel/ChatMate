@@ -13,6 +13,56 @@
 }
 
 body {
-  background-color: #f9f9f9; 
-  color: #333;               
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Dark Mode Styles */
+.dark {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+/* Improved Card Styling */
+.card {
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Chat Messages Styling */
+.user-message {
+  background-color: #4f46e5; /* Soft blue */
+  color: white;
+  align-self: flex-end;
+  padding: 10px;
+  border-radius: 12px;
+  max-width: 70%;
+}
+
+.bot-message {
+  background-color: #e5e7eb; /* Light gray */
+  color: #333;
+  align-self: flex-start;
+  padding: 10px;
+  border-radius: 12px;
+  max-width: 70%;
+}
+
+/* Button Improvements */
+button {
+  transition: all 0.3s ease-in-out;
+}
+button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* Sidebar Hover Effects */
+.sidebar-item:hover {
+  background-color: #f3f4f6;
+  transition: background-color 0.3s;
+}
+.dark .sidebar-item:hover {
+  background-color: #2d2d2d;
 }
