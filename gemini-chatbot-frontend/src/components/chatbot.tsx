@@ -9,6 +9,7 @@ const Chatbot: React.FC = () => {
     e.preventDefault();
     if (!input.trim()) return;
 
+    // Add user message to the chat
     setMessages((prevMessages) => [...prevMessages, { sender: 'user', text: input }]);
     setInput('');
 
@@ -18,6 +19,7 @@ const Chatbot: React.FC = () => {
         throw new Error('API key is undefined');
       }
 
+      // Send request to Gemini API
       const response = await axios.post(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
         {
@@ -33,7 +35,8 @@ const Chatbot: React.FC = () => {
           },
         }
       );
-      
+
+      // Extract bot reply
       const reply = response.data.candidates[0].content.parts[0].text;
       setMessages((prevMessages) => [
         ...prevMessages,
@@ -49,11 +52,10 @@ const Chatbot: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-background p-6">
-      
+    <div className="flex flex-col min-h-screen bg-background dark:bg-dark-background p-6">
       {/* Chat Messages */}
       <div
-        className="flex-1 space-y-4 overflow-y-auto border border-gray-300 rounded-lg p-4 bg-white shadow-md"
+        className="flex-1 space-y-4 overflow-y-auto border border-gray-300 rounded-lg p-4 bg-card dark:bg-dark-card shadow-md"
         style={{ maxHeight: '400px' }}
       >
         {messages.map((msg, index) => (
@@ -62,7 +64,7 @@ const Chatbot: React.FC = () => {
             className={`max-w-xs p-3 rounded-lg shadow-card animate-fade-in ${
               msg.sender === 'user'
                 ? 'self-end bg-primary text-white'
-                : 'self-start bg-gray-100 text-gray-800'
+                : 'self-start bg-gray-100 dark:bg-dark-card text-gray-800 dark:text-dark-text'
             }`}
           >
             <strong>{msg.sender === 'user' ? 'You:' : 'Gemini:'}</strong> {msg.text}
@@ -77,7 +79,7 @@ const Chatbot: React.FC = () => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type a message..."
-          className="flex-1 p-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary"
+          className="flex-1 p-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary dark:bg-dark-card dark:text-dark-text"
         />
         <button
           type="submit"
