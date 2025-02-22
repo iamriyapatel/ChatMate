@@ -2,7 +2,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = { 
     content: ['./src/**/*.{js,jsx,ts,tsx}'],
-    darkMode: 'class',
     theme: {
       extend: {
           maxHeight: {
@@ -14,11 +13,6 @@ module.exports = {
             card: '#ffffff',
             text: '#333333',
             accent: '#ffc107',
-            dark: {
-                background: '#121212', 
-                card: '#1e1e1e',       
-                text: '#e0e0e0',       
-            },
         },
         fontFamily: {
             outfit: ['Outfit', 'sans-serif'],
