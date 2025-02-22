@@ -1,50 +1,24 @@
 import React from 'react';
+import { assets } from '../assets/assets.js';
 
 const Sidebar = () => {
   return (
-    <aside className="w-64 bg-white dark:bg-dark-card shadow-lg p-4">
-      <h2 className="text-lg font-bold text-primary dark:text-dark-text mb-4">Menu</h2>
-      <ul className="space-y-2">
-        <li>
-          <a href="#" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0l-2-2m2 2V4a1 1 0 00-1-1h-3a1 1 0 00-1 1v10a1 1 0 001 1h3z"
-              />
-            </svg>
-            <span>Dashboard</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8s-9-3.582-9-8 4.03-8 9-8 9 3.582 9 8z"
-              />
-            </svg>
-            <span>Chat</span>
-          </a>
-        </li>
+    <div className="w-64 bg-card dark:bg-dark-card min-h-screen p-4 shadow-lg">
+      <h2 className="text-xl font-bold text-primary dark:text-dark-text mb-4">Menu</h2>
+      <ul className="space-y-4">
+        {[
+          { text: 'Home', icon: assets.home_icon },
+          { text: 'Chats', icon: assets.chat_icon },
+          { text: 'Settings', icon: assets.settings_icon },
+          { text: 'Logout', icon: assets.logout_icon }
+        ].map((item, index) => (
+          <li key={index} className="flex items-center p-2 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 transition">
+            <img src={item.icon} alt={item.text} className="w-6 h-6 mr-3" />
+            <span className="text-text dark:text-dark-text">{item.text}</span>
+          </li>
+        ))}
       </ul>
-    </aside>
+    </div>
   );
 };
 
