@@ -10,15 +10,10 @@
   font-family: 'Outfit', sans-serif;
 }
 
+/* Body Styling */
 body {
   background-color: #f9f9f9;
   color: #333;
-}
-
-/* Dark Mode Styles */
-.dark {
-  background-color: #121212;
-  color: #e0e0e0;
 }
 
 /* Improved Card Styling */
@@ -51,6 +46,7 @@ body {
 button {
   transition: all 0.3s ease-in-out;
 }
+
 button:hover {
   transform: scale(1.05);
   opacity: 0.9;
@@ -60,7 +56,4 @@ button:hover {
 .sidebar-item:hover {
   background-color: #f3f4f6;
   transition: background-color 0.3s;
-}
-.dark .sidebar-item:hover {
-  background-color: #2d2d2d;
 }
