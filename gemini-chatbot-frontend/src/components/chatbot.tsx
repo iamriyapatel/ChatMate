@@ -55,8 +55,7 @@ const Chatbot: React.FC = () => {
     <div className="flex flex-col min-h-screen bg-background dark:bg-dark-background p-6">
       {/* Chat Messages */}
       <div
-        className="flex-1 space-y-4 overflow-y-auto border border-gray-300 rounded-lg p-4 bg-card dark:bg-dark-card shadow-md"
-        style={{ maxHeight: '400px' }}
+        className="flex-1 space-y-4 overflow-y-auto border border-gray-300 rounded-lg p-4 bg-card dark:bg-dark-card shadow-md max-h-[400px]"
       >
         {messages.map((msg, index) => (
           <div
