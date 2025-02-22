@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from 'react';
 import Chatbot from './components/chatbot';
 import Sidebar from './components/Sidebar';
@@ -6,19 +5,23 @@ import Main from './components/Main';
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen bg-background dark:bg-dark-background text-text dark:text-dark-text">
       {/* Header */}
-      <header className="bg-white shadow-lg p-4 text-center">
-        <h1 className="text-2xl font-bold text-primary">Gemini AI Clone</h1>
+      <header className="bg-white dark:bg-dark-card shadow-lg p-4 text-center">
+        <h1 className="text-2xl font-bold text-primary dark:text-dark-text">Gemini AI Clone</h1>
       </header>
 
-      {/* Main Content */}
-      <main className="flex-1 p-6">
-        <Chatbot />
-      </main>
+      {/* Layout with Sidebar and Main Content */}
+      <div className="flex flex-1">
+        {/* Sidebar */}
+        <Sidebar />
+
+        {/* Main Content */}
+        <Main />
+      </div>
 
       {/* Footer */}
-      <footer className="bg-white shadow-lg p-4 text-center text-gray-600">
+      <footer className="bg-white dark:bg-dark-card shadow-lg p-4 text-center text-gray-600 dark:text-dark-text">
         <p>© 2025 Gemini AI. All rights reserved.</p>
       </footer>
     </div>
