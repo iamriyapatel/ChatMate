@@ -1,63 +1,66 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { assets } from '../assets/assets.js';
 
-const Chatbot: React.FC = () => {
-  const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
-  const [input, setInput] = useState<string>('');
-
-  const sendMessage = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim()) return;
-
-    setMessages((prevMessages) => [...prevMessages, { sender: 'user', text: input }]);
-    setInput('');
-
-    try {
-      const apiKey = import.meta.env.VITE_API_KEY;
-      if (!apiKey) {
-        throw new Error('API key is undefined');
-      }
-
-      const response = await axios.post(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
-        {
-          contents: [{ parts: [{ text: input }] }],
-        },
-        { headers: { 'Content-Type': 'application/json' } }
-      );
-
-      const reply = response.data.candidates?.[0]?.content?.parts?.[0]?.text || 'No response received';
-      setMessages((prevMessages) => [...prevMessages, { sender: 'gemini', text: reply }]);
-    } catch (error) {
-      console.error('Error sending message:', error);
-      setMessages((prevMessages) => [...prevMessages, { sender: 'gemini', text: 'Oops! Something went wrong.' }]);
-    }
-  };
-
+const Main = () => {
   return (
     <div className="flex flex-col min-h-screen bg-background dark:bg-dark-background p-6">
-      <div className="flex-1 space-y-4 overflow-y-auto border border-gray-300 rounded-lg p-4 bg-card dark:bg-dark-card shadow-md max-h-[400px]">
-        {messages.map((msg, index) => (
-          <div key={index} className={`p-3 rounded-lg shadow-card max-w-xs ${msg.sender === 'user' ? 'user-message' : 'bot-message'}`}>
-            <strong>{msg.sender === 'user' ? 'You:' : 'Gemini:'}</strong> {msg.text}
-          </div>
-        ))}
+      {/* Navigation Bar */}
+      <div className="flex justify-between items-center mb-6">
+        <p className="text-xl font-bold text-primary dark:text-dark-text">Gemini</p>
+        <img src={assets.user_icon} alt="User Icon" className="w-8 h-8 rounded-full" />
       </div>
 
-      <form onSubmit={sendMessage} className="mt-4 flex space-x-2">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Type a message..."
-          className="flex-1 p-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary dark:bg-dark-card dark:text-dark-text"
-        />
-        <button type="submit" className="bg-primary text-white p-3 rounded-lg hover:bg-accent transition duration-300">
-          Send
-        </button>
-      </form>
+      {/* Main Content */}
+      <div className="flex-1 space-y-6">
+        {/* Greeting Section */}
+        <div className="greet">
+          <p className="text-lg font-semibold">
+            <span className="text-primary dark:text-dark-text">Hello, Riya.</span>
+          </p>
+          <p className="text-gray-700 dark:text-dark-text">How can I help you today?</p>
+        </div>
+
+        {/* Cards Section */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="card bg-card dark:bg-dark-card shadow-card rounded-lg p-4 flex flex-col items-center space-y-2">
+            <p className="text-center text-gray-700 dark:text-dark-text">Suggest beautiful places to see on an upcoming road trip</p>
+            <img src={assets.compass_icon} alt="Compass Icon" className="w-10 h-10" />
+          </div>
+          <div className="card bg-card dark:bg-dark-card shadow-card rounded-lg p-4 flex flex-col items-center space-y-2">
+            <p className="text-center text-gray-700 dark:text-dark-text">Briefly summarize this concept: urban planning</p>
+            <img src={assets.bulb_icon} alt="Bulb Icon" className="w-10 h-10" />
+          </div>
+          <div className="card bg-card dark:bg-dark-card shadow-card rounded-lg p-4 flex flex-col items-center space-y-2">
+            <p className="text-center text-gray-700 dark:text-dark-text">Brainstorm team bonding activities for our work retreat</p>
+            <img src={assets.message_icon} alt="Message Icon" className="w-10 h-10" />
+          </div>
+          <div className="card bg-card dark:bg-dark-card shadow-card rounded-lg p-4 flex flex-col items-center space-y-2">
+            <p className="text-center text-gray-700 dark:text-dark-text">Improve the readability of the following code</p>
+            <img src={assets.code_icon} alt="Code Icon" className="w-10 h-10" />
+          </div>
+        </div>
+
+        {/* Search Box and Bottom Info */}
+        <div className="main-bottom space-y-4">
+          <div className="search-box bg-card dark:bg-dark-card shadow-card rounded-lg p-4 flex items-center justify-between">
+            <input
+              type="text"
+              placeholder="Enter a prompt here"
+              className="flex-1 p-2 border-none focus:outline-none text-text dark:text-dark-text"
+            />
+            <div className="flex space-x-2">
+              <img src={assets.gallery_icon} alt="Gallery Icon" className="w-6 h-6 cursor-pointer" />
+              <img src={assets.mic_icon} alt="Mic Icon" className="w-6 h-6 cursor-pointer" />
+              <img src={assets.send_icon} alt="Send Icon" className="w-6 h-6 cursor-pointer" />
+            </div>
+          </div>
+          <p className="bottom-info text-xs text-gray-500 dark:text-dark-text text-center">
+            Gemini may display inaccurate info, including about people, so double-check its responses. Your privacy and Gemini Apps.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Chatbot;
+export default Main;
