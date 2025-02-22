@@ -1,42 +1,50 @@
-import { useState } from "react";
-import "./Sidebar.css";
-import { assets } from "../assets/assets.js";
-const Sidebar = () => {
-  const [extended, setExtended] = useState(false);
+import React from 'react';
 
+const Sidebar = () => {
   return (
-    <div className="sidebar">
-      <div className="top">
-        <img onClick={()=>setExtended(prev=>!prev)} className="menu" src={assets.menu_icon} alt="" />
-        <div className="new-chat">
-          <img src={assets.plus_icon} alt="" />
-          {extended ? <p>New Chat</p> : null}
-        </div>
-        {extended ? (
-          <div className="recent">
-            <p className="recent-title">Recent</p>
-            <div className="recent-entry">
-              <img src={assets.message_icon} alt="" />
-              <p>What is react ...</p>
-            </div>
-          </div>
-        ) : null}
-      </div>
-      <div className="bottom">
-        <div className="bottom-item recent-entry">
-          <img src={assets.question_icon} alt="" />
-          {extended?<p>Help</p>:null}
-        </div>
-        <div className="bottom-item recent-entry">
-          <img src={assets.history_icon} alt="" />
-          {extended?<p>Activity</p>:null}
-        </div>
-        <div className="bottom-item recent-entry">
-          <img src={assets.settings_icon} alt="" />
-          {extended?<p>Settings</p>:null}
-        </div>
-      </div>
-    </div>
+    <aside className="w-64 bg-white dark:bg-dark-card shadow-lg p-4">
+      <h2 className="text-lg font-bold text-primary dark:text-dark-text mb-4">Menu</h2>
+      <ul className="space-y-2">
+        <li>
+          <a href="#" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0l-2-2m2 2V4a1 1 0 00-1-1h-3a1 1 0 00-1 1v10a1 1 0 001 1h3z"
+              />
+            </svg>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" className="flex items-center space-x-2 text-gray-700 hover:text-primary">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8s-9-3.582-9-8 4.03-8 9-8 9 3.582 9 8z"
+              />
+            </svg>
+            <span>Chat</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
   );
 };
 
