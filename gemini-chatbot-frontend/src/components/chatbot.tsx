@@ -35,7 +35,7 @@ const Chatbot: React.FC = () => {
 
   return (
     <div className="flex flex-col h-screen w-screen bg-black text-white p-4 overflow-hidden">
-      
+      {/* Chatbox UI */}
       <div className="flex flex-col flex-grow w-full h-full items-center justify-center overflow-hidden">
         <div className="w-full max-w-3xl bg-black p-4 rounded-lg shadow-lg flex flex-col h-full overflow-y-auto">
           {messages.map((msg, index) => (
@@ -46,6 +46,7 @@ const Chatbot: React.FC = () => {
         </div>
       </div>
 
+      {/* Input Field */}
       <form onSubmit={sendMessage} className="w-full max-w-3xl mx-auto bg-black rounded-full p-3 flex items-center mt-4">
         <input
           type="text"
