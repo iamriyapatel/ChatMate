@@ -29,12 +29,12 @@ const Sidebar = () => {
         onMouseEnter={() => setIsExpanded(true)}
         onMouseLeave={() => setIsExpanded(false)}
       >
-        {/* Menu Button */}
+        
         <button className="flex items-center space-x-3 p-3 text-xl hover:bg-gray-600 transition w-full bg-transparent">
           ☰ {isExpanded && <span>Menu</span>}
         </button>
 
-        {/* Recent Searches Section */}
+        
         {isExpanded && (
           <div className="px-4 mt-4">
             <h3 className="text-lg font-bold">Recent Searches</h3>
@@ -48,7 +48,7 @@ const Sidebar = () => {
           </div>
         )}
 
-        {/* Sidebar Items */}
+        
         <div className="flex flex-col space-y-6 mt-6 px-2">
           <button className="flex items-center space-x-3 p-3 text-xl text-red-400 hover:bg-gray-600 transition w-full bg-transparent">
             ❤️ {isExpanded && <span>Favorites</span>}
@@ -67,7 +67,7 @@ const Sidebar = () => {
           </button>
         </div>
 
-        {/* Theme Toggle */}
+        
         <div className="mt-auto px-4">
           <button
             className="w-full p-3 bg-[#1c1b1b] text-white rounded-md hover:bg-gray-900 transition"
