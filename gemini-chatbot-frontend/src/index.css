@@ -3,57 +3,77 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Outfit', sans-serif;
+:root {
+  font-family: 'Outfit';
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #1c1b1b;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  margin: none;
 }
 
-/* Body Styling */
+html, body {
+  overflow: hidden;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
 body {
-  background-color: #f9f9f9;
-  color: #333;
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
 }
 
-/* Improved Card Styling */
-.card {
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
 }
 
-/* Chat Messages Styling */
-.user-message {
-  background-color: #4f46e5; /* Soft blue */
-  color: white;
-  align-self: flex-end;
-  padding: 10px;
-  border-radius: 12px;
-  max-width: 70%;
-}
-
-.bot-message {
-  background-color: #e5e7eb; /* Light gray */
-  color: #333;
-  align-self: flex-start;
-  padding: 10px;
-  border-radius: 12px;
-  max-width: 70%;
-}
-
-/* Button Improvements */
 button {
-  transition: all 0.3s ease-in-out;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
 }
-
 button:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* Sidebar Hover Effects */
-.sidebar-item:hover {
-  background-color: #f3f4f6;
-  transition: background-color 0.3s;
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
 }
