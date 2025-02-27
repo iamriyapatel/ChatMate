@@ -1,83 +1,67 @@
-import { useState, useEffect } from "react";
-
 const Sidebar = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
-
-  const recentSearches = [
-    "What is AI?",
-    "How does React work?",
-    "Latest tech trends",
-  ];
-
   return (
-    <div className="relative flex transition-all duration-300">
-      <aside
-        className={`h-screen flex flex-col items-start py-6 shadow-lg transition-all duration-300 ${
-          isExpanded ? "w-64" : "w-16"
-        } ${darkMode ? "bg-[#1c1b1b] text-white" : "bg-white text-black"}`}
-      >
-        {/* Menu Button */}
-        <button
-          className={`flex items-center mt-6 text-xl w-full hover:bg-gray-600 transition rounded-full border-hidden ${darkMode ? "text-white bg-[#1c1b1b]" : "text-black bg-white"}`}
-          onClick={() => setIsExpanded(!isExpanded)}
-        >
-          ☰ {isExpanded && <span> Menu </span>}
+    <aside className="fixed left-0 top-0 h-screen w-36 bg-[#1c1b1b] flex flex-col px-4 py-6 z-50 overflow-y-auto">
+      {/* Logo */}
+      <h1 className="text-xl font-bold text-white">OpenAI</h1>
+
+      {/* Menu Items */}
+      <nav className="mt-10 space-y-6 text-white">
+        <ul className="space-y-6 text-gray-300">
+          <li>
+            <a href="#research" className="block hover:text-white transition">
+              Research
+            </a>
+          </li>
+          <li>
+            <a href="#safety" className="block hover:text-white transition">
+              Safety
+            </a>
+          </li>
+          <li>
+            <a href="#chatgpt" className="block hover:text-white transition">
+              ChatGPT
+            </a>
+          </li>
+          <li>
+            <a href="#sora" className="block hover:text-white transition">
+              Sora
+            </a>
+          </li>
+          <li>
+            <a href="#apiplatform" className="block hover:text-white transition">
+              API Platform
+            </a>
+          </li>
+          <li>
+            <a href="#forbusiness" className="block hover:text-white transition">
+              For Business
+            </a>
+          </li>
+          <li>
+            <a href="#stories" className="block hover:text-white transition">
+              Stories
+            </a>
+          </li>
+          <li>
+            <a href="#company" className="block hover:text-white transition">
+              Company
+            </a>
+          </li>
+          <li>
+            <a href="#news" className="block hover:text-white transition">
+              News
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      {/* Bottom Icon */}
+      <div className="mt-auto">
+        <button className="text-white opacity-60 hover:opacity-100 transition">
+          ↻
         </button>
-
-        {/* Recent Searches Section */}
-        {isExpanded && (
-          <div className="px-4 mt-4">
-            <h3 className="text-lg font-bold border-b pb-2">Recent Searches</h3>
-            <ul className="mt-2 space-y-2">
-              {recentSearches.map((search, index) => (
-                <li
-                  key={index}
-                  className="text-sm p-2 rounded-full hover:bg-gray-300 dark:hover:bg-gray-700 cursor-pointer transition"
-                >
-                  🔍 {search}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {/* Sidebar Items */}
-        <div className="flex flex-col space-y-4 mt-6 px-2 rounded-full border-hidden">
-          {[
-            { label: "Favorites", icon: "❤️" },
-            { label: "Help", icon: "❓" },
-            { label: "History", icon: "⏳" },
-            { label: "Settings", icon: "⚙️" },
-          ].map((item, index) => (
-            <button
-              key={index}
-              className={`flex items-center space-x-3 p-3 text-md border-hidden hover:bg-gray-600 rounded-full transition w-full ${darkMode ? "text-white bg-[#1c1b1b]" : "text-black bg-white"}`}
-            >
-              {item.icon} {isExpanded && <span>{item.label}</span>}
-            </button>
-          ))}
-        </div>
-
-        {/* Theme Toggle */}
-        <div className="mt-auto">
-          <button
-            className={`w-full rounded-full hover:bg-slate-700 hover:opacity-80 active:scale-95 transition flex items-right border-hidden ${darkMode ? "bg-[#1c1b1b] text-white" : "bg-white text-black"}`}
-            onClick={() => setDarkMode(!darkMode)}
-          >
-            {darkMode ? "🌙" : "☀️"}
-          </button>
-        </div>
-      </aside>
-    </div>
+      </div>
+    </aside>
   );
 };
 
