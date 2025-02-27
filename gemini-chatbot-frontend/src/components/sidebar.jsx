@@ -1,67 +1,76 @@
+import { useState } from "react";
+
 const Sidebar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <aside className="fixed left-0 top-0 h-screen w-36 bg-[#1c1b1b] flex flex-col px-4 py-6 z-50 overflow-y-auto">
-      {/* Logo */}
-      <h1 className="text-xl font-bold text-white">OpenAI</h1>
+    <>
+      {/* Menu Button (Only Visible on Mobile) */}
+      <button
+        className="fixed top-4 left-4 z-50 text-white md:hidden"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        ☰
+      </button>
 
-      {/* Menu Items */}
-      <nav className="mt-10 space-y-6 text-white">
-        <ul className="space-y-6 text-gray-300">
-          <li>
-            <a href="#research" className="block hover:text-white transition">
-              Research
-            </a>
-          </li>
-          <li>
-            <a href="#safety" className="block hover:text-white transition">
-              Safety
-            </a>
-          </li>
-          <li>
-            <a href="#chatgpt" className="block hover:text-white transition">
-              ChatGPT
-            </a>
-          </li>
-          <li>
-            <a href="#sora" className="block hover:text-white transition">
-              Sora
-            </a>
-          </li>
-          <li>
-            <a href="#apiplatform" className="block hover:text-white transition">
-              API Platform
-            </a>
-          </li>
-          <li>
-            <a href="#forbusiness" className="block hover:text-white transition">
-              For Business
-            </a>
-          </li>
-          <li>
-            <a href="#stories" className="block hover:text-white transition">
-              Stories
-            </a>
-          </li>
-          <li>
-            <a href="#company" className="block hover:text-white transition">
-              Company
-            </a>
-          </li>
-          <li>
-            <a href="#news" className="block hover:text-white transition">
-              News
-            </a>
-          </li>
-        </ul>
-      </nav>
+      {/* Overlay (Shows when sidebar is open) */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          onClick={() => setIsOpen(false)}
+        ></div>
+      )}
 
-      {/* Bottom Icon */}
-      <div className="mt-auto">
-        <button className="text-white opacity-60 hover:opacity-100 transition">
-          ↻
+      {/* Sidebar */}
+      <aside
+        className={`fixed left-0 top-0 h-screen w-[80%] max-w-[250px] bg-[#1c1b1b] flex flex-col px-4 py-6 z-50 transition-transform duration-300 
+          ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:w-36`}
+      >
+        {/* Close Button (Mobile) */}
+        <button
+          className="absolute top-4 right-4 text-white md:hidden"
+          onClick={() => setIsOpen(false)}
+        >
+          ✕
         </button>
-      </div>
-    </aside>
+
+        {/* Logo */}
+        <h1 className="text-xl font-bold text-white">OpenAI</h1>
+
+        {/* Menu Items */}
+        <nav className="mt-10 space-y-6 text-white">
+          <ul className="space-y-6 text-gray-300">
+            {[
+              "Research",
+              "Safety",
+              "ChatGPT",
+              "Sora",
+              "API Platform",
+              "For Business",
+              "Stories",
+              "Company",
+              "News",
+            ].map((item) => (
+              <li key={item}>
+                <a
+                  href={`#${item.toLowerCase().replace(/\s+/g, "")}`}
+                  className="block hover:text-white transition"
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Bottom Icon */}
+        <div className="mt-auto">
+          <button className="text-white opacity-60 hover:opacity-100 transition">
+            ↻
+          </button>
+        </div>
+      </aside>
+    </>
   );
 };
 
