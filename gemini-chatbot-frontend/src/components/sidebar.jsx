@@ -35,7 +35,7 @@ const Sidebar = () => {
         </button>
 
         {/* Logo */}
-        <h1 className="text-xl font-bold text-white">OpenAI</h1>
+        <h1 className="text-xl font-bold text-white">ChatMate</h1>
 
         {/* Menu Items */}
         <nav className="mt-10 space-y-6 text-white">
