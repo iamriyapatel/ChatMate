@@ -89,8 +89,8 @@ const Chatbot: React.FC = () => {
       {/* Button Group */}
       <div className="flex flex-wrap justify-center gap-3 mt-6">
         {[
-          "Search with ChatGPT",
-          "Talk with ChatGPT",
+          "Search with ChatMate",
+          "Talk with ChatMate",
           "Research",
           "Sora",
           "More",
