@@ -1,19 +1,17 @@
-import { useState } from "react";
-import Chatbot from "./components/chatbot";
+import Header from "./components/Header";
+import MainSection from "./components/MainSection";
 import Sidebar from "./components/sidebar";
+import Sections from "./components/Sections";
+import Footer from "./components/Footer";
 
 const App = () => {
-  const [darkMode, setDarkMode] = useState(false);
-
   return (
-    <div className={`flex h-screen transition-all duration-300 ${darkMode ? "bg-black text-white" : "bg-white text-black"}`}>
-      
-      <Sidebar darkMode={darkMode} setDarkMode={setDarkMode} />
-
-      
-      <div className="flex-1 h-screen">
-        <Chatbot />
-      </div>
+    <div className="font-sans">
+      <Header />
+      <MainSection />
+      <Sidebar />
+      <Sections />
+      <Footer />
     </div>
   );
 };
