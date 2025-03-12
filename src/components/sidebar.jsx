@@ -1,83 +1,67 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Sidebar = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      document.body.style.backgroundColor = "black";
-      document.body.style.color = "white";
-    } else {
-      document.documentElement.classList.remove("dark");
-      document.body.style.backgroundColor = "white";
-      document.body.style.color = "black";
-    }
-  }, [darkMode]);
-
-  const recentSearches = [
-    "What is AI?",
-    "How does React work?",
-    "Latest tech trends",
-  ];
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={`relative flex transition-all duration-300 ${darkMode ? 'bg-[#121212] text-white' : 'bg-white text-black'}`}>
-      <aside
-        className={`h-screen ${darkMode ? 'bg-[#1c1b1b] text-white' : 'bg-white text-black'} flex flex-col items-start py-6 shadow-lg rounded-r-lg`}
-        onMouseEnter={() => setIsExpanded(true)}
-        onMouseLeave={() => setIsExpanded(false)}
+    <>
+      <button
+        className="fixed top-4 left-4 z-50 text-white md:hidden"
+        onClick={() => setIsOpen(!isOpen)}
       >
-        {/* Menu Button */}
-        <button className="flex items-center space-x-3 p-3 text-xl hover:bg-gray-600 transition w-full bg-transparent">
-          ☰ {isExpanded && <span>Menu</span>}
+        ☰
+      </button>
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          onClick={() => setIsOpen(false)}
+        ></div>
+      )}
+
+      <aside
+        className={`fixed left-0 top-0 h-screen w-[80%] max-w-[250px] bg-[#1c1b1b] flex flex-col px-4 py-6 z-50 transition-transform duration-300 
+          ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:w-36`}
+      >
+        <button
+          className="absolute top-4 right-4 text-white md:hidden"
+          onClick={() => setIsOpen(false)}
+        >
+          ✕
         </button>
+        <h1 className="text-xl font-bold text-white">ChatMate</h1>
 
-        {/* Recent Searches Section */}
-        {isExpanded && (
-          <div className="px-4 mt-4">
-            <h3 className="text-lg font-bold">Recent Searches</h3>
-            <ul className="mt-2 space-y-2">
-              {recentSearches.map((search, index) => (
-                <li key={index} className="text-sm bg-transparent p-2 rounded-md">
-                  {search}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <nav className="mt-10 space-y-6 text-white">
+          <ul className="space-y-6 text-gray-300">
+            {[
+              "Research",
+              "Safety",
+              "ChatGPT",
+              "Sora",
+              "API Platform",
+              "For Business",
+              "Stories",
+              "Company",
+              "News",
+            ].map((item) => (
+              <li key={item}>
+                <a
+                  href={`#${item.toLowerCase().replace(/\s+/g, "")}`}
+                  className="block hover:text-white hover:bg-gray-600 hover:rounded-md transition"
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-        {/* Sidebar Items */}
-        <div className="flex flex-col space-y-6 mt-6 px-2">
-          <button className="flex items-center space-x-3 p-3 text-xl text-red-400 hover:bg-gray-600 transition w-full bg-transparent">
-            ❤️ {isExpanded && <span>Favorites</span>}
-          </button>
-          <button className="flex items-center space-x-3 p-3 text-xl text-blue-400 hover:bg-gray-600 transition w-full bg-transparent">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 9a3.75 3.75 0 017.5 0c0 2.25-3.75 3-3.75 6m0 3h.007" />
-            </svg>
-            {isExpanded && <span>Help</span>}
-          </button>
-          <button className="flex items-center space-x-3 p-3 text-xl text-yellow-400 hover:bg-gray-600 transition w-full bg-transparent">
-            ⏳ {isExpanded && <span>History</span>}
-          </button>
-          <button className="flex items-center space-x-3 p-3 text-xl text-green-400 hover:bg-gray-600 transition w-full bg-transparent">
-            ⚙️ {isExpanded && <span>Settings</span>}
-          </button>
-        </div>
-
-        {/* Theme Toggle */}
-        <div className="mt-auto px-4">
-          <button
-            className="w-full p-3 bg-[#1c1b1b] text-white rounded-md hover:bg-gray-900 transition"
-            onClick={() => setDarkMode(!darkMode)}
-          >
-            {darkMode ? "🌙 Dark Mode" : "☀️ Light Mode"}
+        <div className="mt-auto">
+          <button className="text-white opacity-60 hover:opacity-100 transition">
+            ↻
           </button>
         </div>
       </aside>
-    </div>
+    </>
   );
 };
 
