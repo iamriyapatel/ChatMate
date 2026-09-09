@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import { FiPlus, FiSearch, FiMessageSquare, FiArrowUp, FiArrowUpRight, FiSun, FiMoon, FiDownload, FiCopy, FiCheck, FiTrash2, FiMenu, FiX, FiBookOpen, FiCode, FiCompass, FiEdit3, FiStopCircle, FiRefreshCw } from 'react-icons/fi';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
+import PropTypes from 'prop-types';
 import './App.css';
 
 marked.setOptions({ breaks: true, gfm: true });
 function Markdown({ text }) {
   return <div className="markdown-body" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(marked.parse(text), { USE_PROFILES: { html: true } }) }} />;
 }
+Markdown.propTypes = { text: PropTypes.string.isRequired };
 
 const freshChat = () => ({ id: crypto.randomUUID(), title: 'New conversation', messages: [] });
 const starters = [
