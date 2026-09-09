@@ -1,3 +1,4 @@
+/* global process */
 const DEFAULT_MODEL = 'nex-agi/nex-n2.5-mini:free';
 const styles = { Balanced: 'Give a clear, useful answer of moderate length.', Concise: 'Keep the answer short and direct.', Detailed: 'Explain thoroughly with steps and examples where helpful.' };
 
