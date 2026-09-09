@@ -71,7 +71,8 @@ export default function App() {
     const request = new AbortController(); controller.current = request;
     try {
       const response = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: messages.map(({ role, text }) => ({ role, text })), style }), signal: request.signal });
-      const data = await response.json();
+      const contentType = response.headers.get('content-type') || '';
+      const data = contentType.includes('application/json') ? await response.json() : { error: 'The chat service returned an unexpected response. Please redeploy and try again.' };
       if (!response.ok) throw new Error(data.error || 'Unable to get a reply. Please try again.');
       if (controller.current !== request) return;
       updateMessages(chatId, [...messages, { id: crypto.randomUUID(), role: 'assistant', text: data.text }]);
